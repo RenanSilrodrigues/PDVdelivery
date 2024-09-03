@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="reset.css">
+    <title>Document</title>
+
+</head>
+
+<body>
+
+        <H1 class="titulo_cadastro_produto">CADASTRAR PRODUTO</H1>
+        <section class="formulario_cadastro">
+            <form action="/formulariocadastro" method="POST">
+                <label for="tipodeproduto">TIPO DE PRODUTO</label>
+                <select name="tipodeproduto" id="tipodeproduto" required>
+                    <option value="selecione">Selecione</option>
+                    <option value="Pizza">Pizza</option>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao1">Opção 1</option>
+                    <option value="opcao1">Opção 1</option>
+                </select>
+                <label for="descricaoProduto">DESCRIÇÃO DO PRODUTO</label>
+                    <input type="text" id="descricaoProduto" name="descricaoProduto" required>
+                <label for="valor">VALOR</label>
+                    <input type="text" id="valor" name="valor" required>
+                <div class="botao_cadastrar">
+                    <input type="submit" value="CADASTRAR">
+                </div>
+            </form>
+
+        </section>
+
+        <section class="barra_tabeladecadastro">TABELA DE CADASTRO</section>
+        <div class="botao_sair">
+            <input type="button" onclick="window.close()" value="VOLTAR">
+        </div>
+</body>
+</html>

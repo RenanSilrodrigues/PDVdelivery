@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;1,500&display=swap');
+
+.barra_menu{
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    background-color: #909090;
+    text-align: center;
+    justify-content: space-between;
+}
+
+.botao__menu{
+    padding: 0 20px;
+}
+
+.botao_abrir_restaurante{
+    display: flex;
+    padding-right: 20px;  
+}
+
+.barra_botoes{
+    background-color: #DADADA;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 9vh;
+    padding: 10vh 40vh;
+    
+}
+
+.botao{
+    background-color: #837AFE;
+    width: 218px;
+    text-align: center;
+    border-radius: 20px;
+    padding: 20px 0;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    cursor: pointer;
+    box-shadow: 3px 3px 0 #909090;
+}
+
+.botao:active {
+    background-color: #BFBAFF;
+}
+
+.barra_pedidos_realizados{
+    display: flex;
+    flex-direction: column;
+    background-color: #C1BCFF;
+    height: 46vh;
+    font-family: "Montserrat", sans-serif;
+}
+
+footer{
+    display: flex;
+    align-items: flex-end;
+    background-color: #909090;
+    justify-content: center;
+    height: 7vh;
+}
+
+/* Style cadastro_produto.html */
+
+.titulo_cadastro_produto{
+    background-color: #909090;
+    text-align: center;
+    font-size: large;
+    font-family: "Montserrat", sans-serif;
+    padding: 1.5vh;
+    margin: 8px;
+    border-radius: 4px;
+}
+
+
+input[type=text], select {
+    width: 100%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=text]:focus {
+    background-color: lightblue;
+    outline-color: red;
+}
+
+select:focus{
+    outline-color: red;
+}
+
+.formulario_cadastro{
+    border-radius: 5px;
+    background-color: #DADADA;
+    padding: 20px;
+    margin: 8px;
+    font-family: "Montserrat", sans-serif;
+
+}
+
+.barra_tabeladecadastro{
+    background-color: #C1BCFF;
+    height: 45vh;
+    margin: 8px;
+    border-radius: 4px;
+}
+
+input[type=submit],[type=button] {
+    background-color: #837AFE;
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    width: 150px;
+    border-radius: 10px;
+    padding: 8px 0;
+    cursor: pointer;
+}
+
+.botao_sair{
+    background-color: #909090;
+    margin: 8px;
+    padding: 1.5vh;
+    padding-right: 20px;
+    border-radius: 4px;
+}
+
+.botao_cadastrar, .botao_sair{
+    display: flex;
+    justify-content: end;
+}
+
+/*fim cadastro_produto.html*/
+
+/* toggle */
+
+.toggle {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.toggle-switch {
+    display: inline-block;
+    background: #DADADA;
+    border-radius: 1.6rem;
+    width: 4.8rem;
+    height: 2.2rem;
+    position: relative;
+    vertical-align: middle;
+    transition: background 0.25s;
+}
+
+.toggle-switch:before, .toggle-switch:after {
+    content: "";
+}
+
+.toggle-switch:before {
+    display: block;
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    border-radius: 50%;
+    width: 2.0rem;
+    height: 2.0rem;
+    position: absolute;
+    top: 0.1rem;
+    left: 0.3rem;
+    transition: left 0.25s;
+}
+
+.toggle:hover .toggle-switch:before {
+    background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+}
+
+.toggle-checkbox:checked + .toggle-switch {
+    background: #837AFE;
+}
+
+.toggle-checkbox:checked + .toggle-switch:before {
+    left: 2.5rem;
+}
+
+.toggle-checkbox {
+    position: absolute;
+    visibility: hidden;
+}
+
+/* fim toggle */
