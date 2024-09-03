@@ -18,3 +18,8 @@ abrirJanelaSangria.addEventListener('click', () => {
 abrirJanelaPedido.addEventListener('click', () => {
     window.open('cadastro_produto.html','_blank','width=1000,height=800,left=450,top=100');
 })
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetchProdutos();
+});
+
