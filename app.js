@@ -17,6 +17,8 @@ app.get('/cadastro', (req, res) => {
     res.sendFile(__dirname + '/templates/cadastro_produto.html');
 });
 
+//----------------------------------------------------------------------------
+
 app.post('/formulariocadastro', async (req, res) => {
     try {
         const {tipodeproduto, descricaoProduto, valor} = req.body;
@@ -34,9 +36,22 @@ app.post('/formulariocadastro', async (req, res) => {
         res.status(500).send('Erro no servidor');
 
         }
-
 });
 
+//--------------------------------------------------------------------------
+
+app.get('/api/produtos', async (req, res) => {
+    try {
+      const result = await pool.query('SELECT * FROM Produtos');
+      const produtos = result.rows;
+      res.json(produtos);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).json({ error: 'Erro no servidor' });
+    }
+});
+
+//--------------------------------------------------------------------------
 
 app.listen(PORT, () => {
     console.log(`App online na porta ${PORT}`);
