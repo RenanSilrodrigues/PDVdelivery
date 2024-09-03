@@ -101,7 +101,7 @@ select:focus{
 
 }
 
-.barra_tabeladecadastro{
+#barra_tabeladecadastro{
     background-color: #C1BCFF;
     height: 45vh;
     margin: 8px;
