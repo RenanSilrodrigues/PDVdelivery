@@ -6,13 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="reset.css">
-    <script src="/tabelas.js" defer></script>
     <title>Document</title>
 
 </head>
 
 <body>
-
         <H1 class="titulo_cadastro_produto">CADASTRAR PRODUTO</H1>
         <section class="formulario_cadastro">
             <form action="/formulariocadastro" method="POST">
@@ -36,13 +34,28 @@
                     <input type="submit" value="CADASTRAR">
                 </div>
             </form>
-
         </section>
 
-        <div id="barra_tabeladecadastro"></div>
+        <div class="barra_tabeladecadastro">
+            <table id="tabeladecadastro">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tipo</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- dados da API Produtos-->
+                </tbody>
+            </table>
+        </div>
         
         <div class="botao_sair">
             <input type="button" onclick="window.close()" value="VOLTAR">
-        </div>
+        </div> 
+
+        <script src="/tabelas.js"></script>
 </body>
 </html>
