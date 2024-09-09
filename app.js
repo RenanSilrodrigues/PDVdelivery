@@ -17,6 +17,10 @@ app.get('/cadastro', (req, res) => {
     res.sendFile(__dirname + '/templates/cadastro_produto.html');
 });
 
+app.get('/cliente', (req, res) => {
+    console.log('Pagina de clientes carregada');
+    res.sendFile(__dirname + '/templates/cadastro_cliente.html');
+})
 //----------------------------------------------------------------------------
 
 app.post('/formulariocadastro', async (req, res) => {
