@@ -11,20 +11,26 @@
 </head>
 
 <body>
-        <H1 class="titulo_cadastro_produto">CADASTRAR PRODUTO</H1>
-        <section class="formulario_cadastro">
+        <H1 class="titulo_sub">CADASTRAR PRODUTO</H1>
+        <div class="formulario_subcadastro">
             <form action="/formulariocadastro" method="POST">
                 <label for="tipodeproduto">TIPO DE PRODUTO</label>
                 <select name="tipodeproduto" id="tipodeproduto" required>
                     <option value="selecione">Selecione</option>
                     <option value="Pizza">Pizza</option>
-                    <option value="opcao1">Opção 1</option>
-                    <option value="opcao1">Opção 1</option>
-                    <option value="opcao1">Opção 1</option>
-                    <option value="opcao1">Opção 1</option>
-                    <option value="opcao1">Opção 1</option>
-                    <option value="opcao1">Opção 1</option>
-                    <option value="opcao1">Opção 1</option>
+                    <option value="Hamburguer">Hambúrguer</option>
+                    <option value="Esfiha">Esfiha</option>
+                    <option value="Hotdog">HotDog</option>
+                    <option value="Pastel">Pastel</option>
+                    <option value="Espetinho">Espetinho</option>
+                    <option value="Salgados">Salgados</option>
+                    <option value="Marmitex">Marmitex</option>
+                    <option value="Lanchenatural">Lanche Natural</option>
+                    <option value="Tapioca">Tapioca</option>
+                    <option value="Japonesa">Japonesa</option>
+                    <option value="Acai">Açai</option>
+                    <option value="Sobremesas">Sobremesas</option>
+                    <option value="Bebidas">Bebidas</option>
                 </select>
                 <label for="descricaoProduto">DESCRIÇÃO DO PRODUTO</label>
                     <input type="text" id="descricaoProduto" name="descricaoProduto" required>
@@ -34,16 +40,16 @@
                     <input type="submit" value="CADASTRAR">
                 </div>
             </form>
-        </section>
+        </div>
 
-        <div class="barra_tabeladecadastro">
+        <div class="barra_sub">
             <table id="tabeladecadastro">
                 <thead>
                     <tr>
-                        <th>Id</th>
-                        <th>Tipo</th>
-                        <th>Descrição</th>
-                        <th>Valor</th>
+                        <th><strong>Id</strong></th>
+                        <th><strong>Tipo</strong></th>
+                        <th><strong>Descrição</strong></th>
+                        <th><strong>Valor</strong></th>
                     </tr>
                 </thead>
                 <tbody>
