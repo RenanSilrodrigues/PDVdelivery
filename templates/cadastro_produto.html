@@ -12,8 +12,8 @@
 
 <body>
         <H1 class="titulo_sub">CADASTRAR PRODUTO</H1>
-        <div class="formulario_subcadastro">
-            <form action="/formulariocadastro" method="POST">
+        <div class="barraformproduto_sub">
+            <form action="/formulariocadastro" id="formproduto_sub" method="POST">
                 <label for="tipodeproduto">TIPO DE PRODUTO</label>
                 <select name="tipodeproduto" id="tipodeproduto" required>
                     <option value="selecione">Selecione</option>
@@ -42,7 +42,7 @@
             </form>
         </div>
 
-        <div class="barra_sub">
+        <div class="barratabela_sub">
             <table id="tabeladecadastro">
                 <thead>
                     <tr>
@@ -58,7 +58,7 @@
             </table>
         </div>
         
-        <div class="botao_sair">
+        <div class="barrabotao_sair">
             <input type="button" onclick="window.close()" value="VOLTAR">
         </div> 
 

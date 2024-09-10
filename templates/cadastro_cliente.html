@@ -10,31 +10,31 @@
 </head>
 <body>
     <h1 class="titulo_sub">CADASTRAR CLIENTE</h1>
-    <div class="formulario_subcliente">
-        <form action="/formulariocliente" method="POST">
-            <label for="">Telefone</label>
-            <input type="tel">
-            <label for="">Nome</label>
-            <input type="text">
-            <label for="">Cep</label>
-            <input type="number">
+    <div class="barraformcliente_sub">
+        <form action="/formulariocliente" id="formcliente_sub" method="POST">
+            <label for="">Telefone</label><br>
+            <input type="tel" required><br>
+            <label for="">Cep</label><br>
+            <input type="number" required><br>
             <label for="">Endereço</label>
-            <input type="text">
-            <label for="">Numero</label>
-            <input type="number">
+            <input type="text" required><br>
+            <label for="">Numero</label><br>
+            <input type="number" required><br>
             <label for="">Bairro</label>
-            <input type="text">
+            <input type="text" required><br>
             <label for="">Complemento</label>
-            <input type="text">
+            <input type="text" required><br>
+            <label for="">Nome</label>
+            <input type="text" required><br>
             <div class="botao_cadastrar">
                 <input type="submit" value="CADASTRAR">
             </div>
         </form>
     </div>
-    <div class="barra_sub">
+    <div class="barratabela_sub">
 
     </div>
-    <div class="botao_sair">
+    <div class="barrabotao_sair">
         <input type="button" onclick="window.close()" value="VOLTAR">
     </div>
 </body>

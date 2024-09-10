@@ -73,17 +73,15 @@ footer{
     border-radius: 4px;
 }
 
-
-input[type=text],[type=tel],[type=number], select {
+#formproduto_sub [type=text], select{
     width: 100%;
     padding: 8px 20px;
     margin: 8px 0;
-    display: inline-block;
     border-radius: 4px;
     box-sizing: border-box;
 }
 
-input[type=text],[type=tel],[type=number]:focus {
+#formproduto_sub [type=text], :focus{
     outline-color: red;
 }
 
@@ -91,22 +89,49 @@ select:focus{
     outline-color: red;
 }
 
-.formulario_subcadastro{
-    border-radius: 5px;
-    background-color: #DADADA;
-    padding: 20px;
-    margin: 8px;
-    font-family: "Montserrat", sans-serif;
-
+#formcliente_sub{
+    align-content: space-between;
+    gap: 10px 30px;
 }
 
-.formulario_subcliente{
+#formcliente_sub [type=text] {
+    width: 100%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formcliente_sub [type=tel] {
+    width: 100%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#formcliente_sub [type=number] {
+    width: 100%;
+    padding: 8px 20px;
+    margin: 8px 0;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.barraformproduto_sub{
     border-radius: 5px;
     background-color: #DADADA;
     padding: 20px;
     margin: 8px;
     font-family: "Montserrat", sans-serif;
+}
 
+.barraformcliente_sub {
+    border-radius: 5px;
+    background-color: #DADADA;
+    padding: 20px;
+    margin: 8px;
+    font-family: "Montserrat", sans-serif;
 }
 
 #tabeladecadastro td, #tabeladecadastro th {
@@ -127,7 +152,7 @@ select:focus{
     font-family: "Montserrat", sans-serif; 
 }
 
-.barra_sub{
+.barratabela_sub{
     background-color: #C1BCFF;
     max-width: 100%;
     height: 45vh;
@@ -147,7 +172,7 @@ input[type=submit],[type=button] {
     cursor: pointer;
 }
 
-.botao_sair{
+.barrabotao_sair{
     background-color: #909090;
     margin: 8px;
     padding: 1.5vh;
@@ -155,7 +180,7 @@ input[type=submit],[type=button] {
     border-radius: 4px;
 }
 
-.botao_cadastrar, .botao_sair{
+.botao_cadastrar, .barrabotao_sair{
     display: flex;
     justify-content: end;
 }
