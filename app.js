@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = 5555;
 const pool = require('./db');
+const { error } = require('console');
 
 app.use(express.static('public'));
 app.use(express.urlencoded({extended: true}));
@@ -42,19 +43,48 @@ app.post('/formulariocadastro', async (req, res) => {
         }
 });
 
+app.post('/formulariocliente', async (req, res) => {
+    try{
+        const {telefone, cep, endereco, numero, bairro, complemento, nomecliente} = req.body;
+        console.log(telefone, cep, endereco, numero, bairro, complemento, nomecliente);
+
+        await pool.query(
+            'INSERT INTO Clientes (telefone, cep, endereco, numero, bairro, complemento, nome) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+                [telefone, cep, endereco, numero, bairro, complemento, nomecliente]
+        );
+
+        res.redirect(req.get('Referer') || '/cliente');
+
+        }catch (err) {
+            console.error(err.message);
+            res.status(500).send('Erro no servidor');
+
+        }
+});
+
 //--------------------------------------------------------------------------
 
 app.get('/api/produtos', async (req, res) => {
-    try {
-      const result = await pool.query('SELECT * FROM Produtos');
-      const produtos = result.rows;
-      res.json(produtos);
+    try{
+        const result = await pool.query('SELECT * FROM Produtos');
+        const produtos = result.rows;
+        res.json(produtos);
     } catch (err) {
-      console.error(err.message);
-      res.status(500).json({ error: 'Erro no servidor' });
-    }
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro no servidor' });
+        }
 });
 
+app.get('/api/clientes', async (req, res) => {
+    try{
+        const result = await pool.query('SELECT * FROM Clientes');
+        const clientes = result.rows;
+        res.json(clientes);
+    }catch (err) {
+        console.error(err.message);
+        res.status(500).json({ error: 'Erro no servidor' });
+        }
+});
 //--------------------------------------------------------------------------
 
 app.listen(PORT, () => {
