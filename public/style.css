@@ -7,10 +7,17 @@
     font-family: "Montserrat", sans-serif;
     text-align: center;
     justify-content: space-between;
-    border-radius: 4px;
     padding: 1.5vh;
-    margin: 8px;
-    background-image: linear-gradient(#a0a0a0, #909090, #a0a0a0);
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.listamenu{
+    display: flex;
+    color: #ffffff;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: flex-end;
 }
 
 .barra_botoes{
@@ -22,6 +29,7 @@
     border-radius: 4px;
     margin: 8px;
     background-image: linear-gradient(#dadada, #C1BCFF);
+    box-shadow: 2px 2px 5px #a5a5a5;
     
 }
 
@@ -49,6 +57,7 @@
     border-radius: 4px;
     margin: 8px;
     background-image: linear-gradient(#dadada, #C1BCFF);
+    box-shadow: 2px 2px 5px #a5a5a5;
 }
 
 footer{
@@ -57,8 +66,6 @@ footer{
     background-color: #909090;
     justify-content: center;
     height: 7vh;
-    border-radius: 4px;
-    margin: 8px;
 }
 
 /* Style cadastro_produto.html */
@@ -71,9 +78,10 @@ footer{
     padding: 1.5vh;
     margin: 8px;
     border-radius: 4px;
+    box-shadow: 2px 2px 5px #a5a5a5;
 }
 
-#formproduto_sub [type=text], select{
+#formproduto_sub [type=text], [type=tel], select{
     width: 100%;
     padding: 8px 20px;
     margin: 8px 0;
@@ -81,7 +89,7 @@ footer{
     box-sizing: border-box;
 }
 
-#formproduto_sub [type=text], :focus{
+#formproduto_sub [type=text], [type=tel]:focus{
     outline-color: red;
 }
 
@@ -124,6 +132,7 @@ select:focus{
     padding: 20px;
     margin: 8px;
     font-family: "Montserrat", sans-serif;
+    box-shadow: 2px 2px 5px #a5a5a5;
 }
 
 .barraformcliente_sub {
@@ -131,22 +140,28 @@ select:focus{
     background-color: #DADADA;
     padding: 20px;
     margin: 8px;
+    max-height: 238px;
+    overflow: auto;
     font-family: "Montserrat", sans-serif;
 }
 
-#tabeladecadastro td, #tabeladecadastro th {
+#tabeladecadastro td, 
+#tabeladecadastro th,
+#tabelacliente td,
+#tabelacliente th {
     border: 1px solid;
     padding: 8px;
-
 }
 
-#tabeladecadastro th{
+#tabeladecadastro th,
+#tabelacliente th {
     text-align: left;
     text-transform: uppercase;
     background-color: lightblue;
 }
 
-#tabeladecadastro{
+#tabeladecadastro,
+#tabelacliente{
     width: 100%;
     border-collapse: collapse;
     font-family: "Montserrat", sans-serif; 
@@ -160,6 +175,7 @@ select:focus{
     margin: 8px;
     border-radius: 4px;
     overflow: auto;
+    box-shadow: 2px 2px 5px #a5a5a5;
 }
 
 input[type=submit],[type=button] {
@@ -178,11 +194,13 @@ input[type=submit],[type=button] {
     padding: 1.5vh;
     padding-right: 20px;
     border-radius: 4px;
+    box-shadow: 2px 2px 5px #a5a5a5;
 }
 
 .botao_cadastrar, .barrabotao_sair{
     display: flex;
     justify-content: end;
+    gap: 30px;
 }
 
 /*fim cadastro_produto.html*/

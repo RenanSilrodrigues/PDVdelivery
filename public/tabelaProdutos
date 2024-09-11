@@ -1,0 +1,64 @@
+async function fetchProdutos() {
+
+    try {
+
+        const response = await fetch('/api/produtos');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const produtos = await response.json();
+
+        const tbody = document.querySelector('#tabeladecadastro tbody');
+
+        tbody.innerHTML = '';
+
+        produtos.forEach(produto => {
+            // Cria uma nova linha
+            const row = document.createElement('tr');
+
+            const cellId = document.createElement('td');
+            cellId.textContent = produto.id;
+            row.appendChild(cellId);
+
+            const cellTipo = document.createElement('td');
+            cellTipo.textContent = produto.tipo;
+            row.appendChild(cellTipo);
+
+            const cellDescricao = document.createElement('td');
+            cellDescricao.textContent = produto.descricao;
+            row.appendChild(cellDescricao);
+
+            const cellValor = document.createElement('td');
+            cellValor.textContent = produto.valor;
+            row.appendChild(cellValor);
+
+            tbody.appendChild(row);
+        });
+
+    } catch (err) {
+        console.error('Erro ao buscar produtos:', err);
+    }
+}
+
+window.onload = fetchProdutos;
+
+function capitalizeFirstLetter(str) {
+    return str.replace(/(^\w|\s\w)/g, function (char) {
+        return char.toUpperCase();
+    });
+  }
+  
+  document.querySelectorAll('input[type="text"]').forEach(input => {
+    input.addEventListener('input', function () {
+        this.value = capitalizeFirstLetter(this.value);
+    });
+  });
+
+function formatNumberWithCommas(value) {
+    return value.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+}
+
+document.getElementById('valor').addEventListener('input', function () {
+    let inputValue = this.value.replace(/,/g, '');
+    this.value = formatNumberWithCommas(inputValue);
+});

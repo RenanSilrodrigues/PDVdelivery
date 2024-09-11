@@ -35,15 +35,65 @@ async function fetchProdutos() {
             tbody.appendChild(row);
         });
 
-        /*const jsonContainer = document.getElementById('barra_tabeladecadastro');
-
-        jsonContainer.textContent = JSON.stringify(produtos);*/
-
-
     } catch (err) {
         console.error('Erro ao buscar produtos:', err);
     }
 }
 
-// Chama a função ao carregar a página
 window.onload = fetchProdutos;
+
+
+async function fetchClientes() {
+    try{
+        const response = await fetch('/api/clientes');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const clientes = await response.json();
+
+        const tbody = document.querySelector('#tabelacliente tbody');
+
+        tbody.innerHTML = '';
+
+        clientes.forEach(cliente => {
+            // Cria uma nova linha
+            const row = document.createElement('tr');
+
+            const cellTelefone = document.createElement('td');
+            cellTelefone.textContent = cliente.telefone;
+            row.appendChild(cellTelefone);
+
+            const cellCep = document.createElement('td');
+            cellCep.textContent = cliente.cep;
+            row.appendChild(cellCep);
+
+            const cellEndereco = document.createElement('td');
+            cellEndereco.textContent = cliente.endereco;
+            row.appendChild(cellEndereco);
+
+            const cellNumero = document.createElement('td');
+            cellNumero.textContent = cliente.numero;
+            row.appendChild(cellNumero);
+
+            const cellBairro = document.createElement('td');
+            cellBairro.textContent = cliente.bairro;
+            row.appendChild(cellBairro);
+
+            const cellComplemento = document.createElement('td');
+            cellComplemento.textContent = cliente.complemento;
+            row.appendChild(cellComplemento);
+
+            const cellNome = document.createElement('td');
+            cellNome.textContent = cliente.nome;
+            row.appendChild(cellNome);
+
+            tbody.appendChild(row);
+        });
+
+    }catch (err) {
+        console.error('Erro ao buscar produtos:', err);
+    }
+
+}
+
+window.onload = fetchClientes;

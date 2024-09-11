@@ -13,18 +13,26 @@
 <body>
 
     <header>
-        <nav class="barra_menu">
-            <button class="botao_menu" href="">
-                <img src="/image/menuBar.png" title="Menu">
-            </button>
-            <h1>NOME DO RESTAURANTE</h1>
-
-            <label class="toggle">Abrir Restaurante:
-                <input class="toggle-checkbox" type="checkbox">
-                <div class="toggle-switch"></div>
-            </label>
-            <input class="sairIndex" type="button" value="Sair">
-        </nav>  
+        <div class="barra_menu">
+           <div>
+                <p>{NOME DO RESTAURANTE}</p>
+           </div>
+           <nav>
+                <div class="listamenu">
+                    <ul class="listamenu">
+                        <li href="">Menu</li>
+                        <li href="">Sobre</li>
+                        <li href="">Sair</li>
+                    </ul>
+                </div>
+           </nav>
+           <div>
+                <label class="toggle">Abrir Restaurante:
+                    <input class="toggle-checkbox" type="checkbox">
+                    <div class="toggle-switch"></div>
+                </label>
+           </div>
+        </div>  
     </header>
 
     <section class="barra_botoes">

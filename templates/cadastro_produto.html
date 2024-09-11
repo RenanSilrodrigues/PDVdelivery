@@ -11,9 +11,9 @@
 </head>
 
 <body>
-        <H1 class="titulo_sub">CADASTRAR PRODUTO</H1>
+        <H1 class="titulo_sub"><img src="/image/iconCadastro.png" style="position: relative;" >CADASTRAR PRODUTO</H1>
         <div class="barraformproduto_sub">
-            <form action="/formulariocadastro" id="formproduto_sub" method="POST">
+            <form action="/formulariocadastro" id="formproduto_sub" method="POST" autocomplete="off">
                 <label for="tipodeproduto">TIPO DE PRODUTO</label>
                 <select name="tipodeproduto" id="tipodeproduto" required>
                     <option value="selecione">Selecione</option>
@@ -34,8 +34,8 @@
                 </select>
                 <label for="descricaoProduto">DESCRIÇÃO DO PRODUTO</label>
                     <input type="text" id="descricaoProduto" name="descricaoProduto" required>
-                <label for="valor">VALOR</label>
-                    <input type="text" id="valor" name="valor" required>
+                <label for="valor">VALOR R$</label>
+                    <input type="tel" id="valor" name="valor" required>
                 <div class="botao_cadastrar">
                     <input type="submit" value="CADASTRAR">
                 </div>
@@ -59,9 +59,10 @@
         </div>
         
         <div class="barrabotao_sair">
+            <input type="button" onclick="'/cardapio'" value="CARDAPIO">
             <input type="button" onclick="window.close()" value="VOLTAR">
         </div> 
 
-        <script src="/tabelas.js"></script>
+        <script src="/tabelaProdutos"></script>
 </body>
 </html>
