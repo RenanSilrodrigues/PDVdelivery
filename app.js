@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const PORT = 5555;
+const PORT = 5000;
 const pool = require('./db');
 const { error } = require('console');
 
