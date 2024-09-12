@@ -140,7 +140,7 @@ select:focus{
     background-color: #DADADA;
     padding: 20px;
     margin: 8px;
-    max-height: 238px;
+    max-height: 296px;
     overflow: auto;
     font-family: "Montserrat", sans-serif;
 }
