@@ -62,7 +62,7 @@ document.getElementById('telefone').addEventListener('input', function (event) {
     }
     
     if (value.length > 10) {
-      value = `${value.slice(0, 10)}-${value.slice()}`;
+      value = `${value.slice(0, 10)}-${value.slice(10)}`;
     }
     
     input.value = value;

@@ -2,22 +2,32 @@
 
 .barra_menu{
     display: flex;
-    gap: 28px;
+    flex-direction: row;
     align-items: center;
+    height: 50px;
+    padding: 20px;
     font-family: "Montserrat", sans-serif;
-    text-align: center;
-    justify-content: space-between;
-    padding: 1.5vh;
     background-color: #000000;
     color: #ffffff;
+}
+
+.nomerestaurante{
+    display: flex;
+    position: relative;
+    margin-right: auto;
+}
+
+.botoesnav{
+    display: flex;
+    align-items: center;
+    gap: 130px;
 }
 
 .listamenu{
     display: flex;
     color: #ffffff;
-    flex-direction: row;
     gap: 30px;
-    justify-content: flex-end;
+    text-decoration: underline;
 }
 
 .barra_botoes{
@@ -60,20 +70,25 @@
     box-shadow: 2px 2px 5px #a5a5a5;
 }
 
-footer{
+.dadosapp{
     display: flex;
-    align-items: flex-end;
-    background-color: #909090;
+    align-items: center;
     justify-content: center;
-    height: 7vh;
+    color: #ffffff;
+    background-color: #000000;
+    font-family: "Montserrat", sans-serif;
+    height: 30px;
 }
 
 /* Style cadastro_produto.html */
 
 .titulo_sub{
-    background-color: #909090;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
     font-size: large;
+    background-color: #909090;
     font-family: "Montserrat", sans-serif;
     padding: 1.5vh;
     margin: 8px;
