@@ -46,13 +46,13 @@ function capitalizeFirstLetter(str) {
     return str.replace(/(^\w|\s\w)/g, function (char) {
         return char.toUpperCase();
     });
-  }
+}
   
-  document.querySelectorAll('input[type="text"]').forEach(input => {
+document.querySelectorAll('input[type="text"]').forEach(input => {
     input.addEventListener('input', function () {
         this.value = capitalizeFirstLetter(this.value);
     });
-  });
+});
 
 function formatNumberWithCommas(value) {
     return value.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
