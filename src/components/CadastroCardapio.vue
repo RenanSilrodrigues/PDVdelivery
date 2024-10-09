@@ -77,13 +77,14 @@
     <div class="hero-cardapio">
 
       <div class="titulo">
+        <img src="../../public/images/iconCardapio.png">
         <h1>CARDAPIO</h1>
       </div>
   
       <div class="barraform">
         <!-- Abas para selecionar o tipo de produto -->
         <div class="tabs">
-          <button
+          <button id="tabbutton"
             v-for="(tipo, index) in tipos"
             :key="index"
             @click="activeTab = tipo"
@@ -107,11 +108,15 @@
             </thead>
             <tbody>
               <tr v-for="produto in produtosPorTipo[activeTab]" :key="produto.id">
-                <td>{{ produto.id }}</td>
-                <td>{{ produto.descricao }}</td>
-                <td>{{ produto.valor }}</td>
-                <td>
-                  <button @click="excluirProduto(produto.id)">Excluir</button>
+                <td class="tdid">{{ produto.id }}</td>
+                <td class="tddescricao">{{ produto.descricao }}</td>
+                <td class="tdvalor">{{ produto.valor }}</td>
+                <td class="tdacoes">
+                  <button @click="excluirProduto(produto.id)"><img src="../../public/images/iconLixeira.png" id="imgiconsacoes"></button>
+                  <button><img src="../../public/images/iconEditar.png" id="imgiconsacoes"></button>
+                  <button><img src="../../public/images/iconFoto.png" id="imgiconsacoes"></button>
+                  <button><img src="../../public/images/iconCompras.png" id="imgiconsacoes"></button>
+                  <button><img src="../../public/images/iconVizualizar.png" id="imgiconsacoes"></button>
                 </td>
               </tr>
             </tbody>
@@ -165,6 +170,29 @@
     padding: 8px;
 }
 
+.tdacoes{
+  width: 12.4rem;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.tdvalor{
+  width: 10rem;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.tdid{
+  width: 3rem;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.tddescricao{
+  height: 100%;
+  vertical-align: middle;
+}
+
 #tabelacardapio th {
     text-align: left;
     text-transform: uppercase;
@@ -180,8 +208,8 @@
 .barraform{
     border-radius: 5px;
     background-color: #DADADA;
-    padding: 1rem 1rem 0 0;
-    margin: 8px 8px 0 8px;
+    padding: 0.5rem 1rem 0 0;
+    margin: 0 8px 0 8px;
     font-family: "Montserrat", sans-serif;
 }
 
@@ -203,14 +231,19 @@
   
   button {
     padding: 5px 10px;
-    background-color: #dadada;
     color: #000000;
     border: none;
     cursor: pointer;
   }
-  
-  button:hover {
-    background-color: #a5a5a5;
+
+  #imgiconsacoes{
+    width: 16px;
+    height: 16px;
   }
+
+  #imgiconsacoes:hover{
+    transform: scale(1.7);
+  }
+
   </style>
   
