@@ -11,23 +11,12 @@ onMounted(() => {
         });
     });
 
-    const valorInput = document.getElementById('valor') as HTMLInputElement;
-    if (valorInput) {
-        valorInput.addEventListener('input', function (this: HTMLInputElement) {
-            let inputValue = this.value.replace(/,/g, '');
-            this.value = formatNumberWithCommas(inputValue);
+    function capitalizeFirstLetter(str: string): string {
+        return str.replace(/(^\w|\s\w)/g, function (char) {
+            return char.toUpperCase();
         });
     }
 
-    function capitalizeFirstLetter(str: string): string {
-    return str.replace(/(^\w|\s\w)/g, function (char) {
-        return char.toUpperCase();
-    });
-}
-
-    function formatNumberWithCommas(value: string): string {
-        return value.replace(/\B(?=(\d{2})+(?!\d))/g, ",");
-    }
 });
 
 onMounted(() => {
