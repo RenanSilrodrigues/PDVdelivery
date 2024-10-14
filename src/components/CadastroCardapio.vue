@@ -10,12 +10,12 @@
   
   export default defineComponent({
     setup() {
-      const produtos = ref<Produto[]>([]); // Armazena os produtos
-      const produtosPorTipo = ref<{ [key: string]: Produto[] }>({}); // Armazena produtos separados por tipo
-      const tipos = ref<string[]>([]); // Armazena os tipos únicos
-      const activeTab = ref<string>(''); // Aba ativa (tipo de produto)
+      const produtos = ref<Produto[]>([]);
+      const produtosPorTipo = ref<{ [key: string]: Produto[] }>({});
+      const tipos = ref<string[]>([]);
+      const activeTab = ref<string>('');
   
-      // Função para buscar os produtos da API
+      
       const fetchProdutos = async () => {
         try {
           const response = await fetch('http://localhost:5000/api/produtos');
@@ -25,7 +25,7 @@
           const data: Produto[] = await response.json();
           produtos.value = data;
   
-          // Agrupa os produtos por tipo
+          
           data.forEach(produto => {
             if (!produtosPorTipo.value[produto.tipo]) {
               produtosPorTipo.value[produto.tipo] = [];
@@ -33,15 +33,15 @@
             produtosPorTipo.value[produto.tipo].push(produto);
           });
   
-          // Define as abas (tipos únicos)
+          
           tipos.value = Object.keys(produtosPorTipo.value);
-          activeTab.value = tipos.value[0]; // Define a primeira aba como ativa
+          activeTab.value = tipos.value[0]; 
         } catch (err) {
           console.error('Erro ao buscar produtos:', err);
         }
       };
   
-      // Função para excluir um produto
+      
       const excluirProduto = async (id: number) => {
         try {
           const response = await fetch(`http://localhost:5000/api/produtos/${id}`, {
@@ -51,7 +51,7 @@
             throw new Error(`Erro ao excluir produto: ${response.status}`);
           }
   
-          // Remove o produto da aba ativa
+          
           produtosPorTipo.value[activeTab.value] = produtosPorTipo.value[activeTab.value].filter(
             produto => produto.id !== id
           );
@@ -60,7 +60,7 @@
         }
       };
   
-      // Carrega os produtos quando o componente é montado
+      
       onMounted(fetchProdutos);
   
       return {
@@ -82,7 +82,6 @@
       </div>
   
       <div class="barraform">
-        <!-- Abas para selecionar o tipo de produto -->
         <div class="tabs">
           <button id="tabbutton"
             v-for="(tipo, index) in tipos"
