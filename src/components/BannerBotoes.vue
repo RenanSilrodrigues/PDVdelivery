@@ -61,7 +61,6 @@ function changeComponent(component: string) {
     text-decoration: none;
     font-family: "Montserrat", sans-serif;
     cursor: pointer;
-    
 }
 
 .botao:hover{

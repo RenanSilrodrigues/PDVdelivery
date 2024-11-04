@@ -11,7 +11,7 @@
             <ul class="listamenu">
                 <li><a href="">Menu</a></li>
                 <li><a href="">Sobre</a></li>
-                <li><a href="">Sair</a></li>
+                <li><router-link to="/">Sair</router-link></li>
             </ul>
             <label class="toggle">Abrir Restaurante:
                 <input class="toggle-checkbox" type="checkbox">
