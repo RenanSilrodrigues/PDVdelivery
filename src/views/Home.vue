@@ -1,8 +1,13 @@
+<script setup lang="ts">
+
+import BannerHome from '@/components/BannerHome.vue';
+
+</script>
+
 <template>
   <div class="hero">
-    <div class="hero-text">
-      <h1>PDVdelivery<img src="/public/images/PDVdelivery.png" alt=""></h1>
-      <p>Sistema de gerenciamento de vendas para restaurantes delivery!</p>
+    <div>
+      <BannerHome />
     </div>
     <div class="hero-buttons">
       <button><router-link to="/Login">Fazer Login</router-link></button>
@@ -10,10 +15,6 @@
     </div>
   </div>
 </template>
-
-<script>
-
-</script>
 
 <style scoped>
 
@@ -53,6 +54,7 @@ img{
 
 .hero-buttons{
   display: flex;
+  justify-content: center;
   gap: 5rem;
   padding: 5rem;
 }

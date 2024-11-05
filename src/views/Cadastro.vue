@@ -1,4 +1,49 @@
+<script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+import BannerHome from '../components/BannerHome.vue';
+
+const router = useRouter();
+
+const nome = ref<string>('');
+const username = ref<string>('');
+const telefone = ref<string>('');
+const password = ref<string>('');
+
+const cadastrar = async () => {
+  try {
+    const response = await fetch('http://localhost:5000/cadastrar', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        nome: nome.value,
+        username: username.value,
+        telefone: telefone.value,
+        password: password.value,
+      }),
+    });
+
+    if (response.ok) {
+      alert('Cadastro realizado com sucesso! Faça login.');
+      router.push('/login');
+    } else {
+      alert('Erro ao cadastrar usuário.');
+    }
+  } catch (error) {
+    console.error('Erro na requisição:', error);
+    alert('Erro ao cadastrar usuário.');
+  }
+};
+</script>
+
 <template>
+  <div class="hero">
+    <div>
+      <BannerHome />
+    </div>
     <div class="register-container">
       <h2>Cadastro</h2>
       <form @submit.prevent="cadastrar">
@@ -24,50 +69,26 @@
       </form>
       <p>Já tem uma conta?<router-link to="/login">Faça login</router-link></p>
     </div>
-  </template>
-  
-<script>
-  export default {
-  data() {
-    return {
-      usuario: '',
-      senha: '',
-    };
-  },
-  methods: {
-    async cadastrar() {
-      const response = await fetch('http://localhost:5000/cadastrar', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nome: this.nome,
-          username: this.username,
-          telefone: this.telefone,
-          password: this.password,
-        }),
-      });
-
-      if (response.ok) {
-        alert('Cadastro realizado com sucesso! Faça login.');
-        this.$router.push('/login');
-      } else {
-        alert('Erro ao cadastrar usuário.');
-      }
-    },
-  },
-};
-  
-</script>
+  </div>
+</template>
   
 <style scoped>
+
+.hero{
+  max-width: 100%;
+  height: 95vh;
+  margin: 1rem;
+  padding: 3rem;
+  background-color: #dadada;
+  box-shadow: 2px 2px 5px #a5a5a5;
+}
 
 .register-container{
   display: flex;
   flex-direction: column;
   row-gap: 1rem;
   font-family: "Montserrat", sans-serif;
+  margin-top: 3rem;
 }
 
 .register-button, h2{
@@ -81,6 +102,7 @@ form{
   grid-template-columns: auto auto;
   column-gap: 1rem;
   row-gap: 1rem;
+  padding: 2rem;
 }
 
 form [type=text], [type=password], [type=tel]{
@@ -89,6 +111,10 @@ form [type=text], [type=password], [type=tel]{
   padding: 8px 20px;
   border-radius: 4px;
   box-sizing: border-box;
+}
+
+label{
+  font-size: 0.8rem;
 }
 
 p{

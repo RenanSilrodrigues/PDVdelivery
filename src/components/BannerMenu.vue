@@ -1,5 +1,14 @@
 <script setup lang="ts">
 
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const logout = () => {
+  localStorage.removeItem('token'); // Remover o token de autenticação
+  router.push({ name: 'home' });
+};
+
 </script>
 
 <template>
@@ -11,7 +20,7 @@
             <ul class="listamenu">
                 <li><a href="">Menu</a></li>
                 <li><a href="">Sobre</a></li>
-                <li><router-link to="/">Sair</router-link></li>
+                <li @click="logout">Sair</li>
             </ul>
             <label class="toggle">Abrir Restaurante:
                 <input class="toggle-checkbox" type="checkbox">
