@@ -8,15 +8,15 @@
         </div>
         <div class="input-group">
           <label for="email">Email:</label>
-          <input type="text" v-model="usuario" required />
+          <input type="text" v-model="username" required />
         </div>
         <div class="input-group">
           <label for="telefone">Telefone:</label>
           <input type="tel" v-model="telefone" required />
         </div>
         <div class="input-group">
-          <label for="senha">Senha:</label>
-          <input type="password" v-model="senha" required />
+          <label for="password">Senha:</label>
+          <input type="password" v-model="password" required />
         </div>
         <div class="register-button">
           <button type="submit">Cadastrar</button>
@@ -42,8 +42,10 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          usuario: this.usuario,
-          senha: this.senha,
+          nome: this.nome,
+          username: this.username,
+          telefone: this.telefone,
+          password: this.password,
         }),
       });
 

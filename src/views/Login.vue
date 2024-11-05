@@ -3,52 +3,50 @@
       <h2>Login</h2>
       <form @submit.prevent="login">
         <div class="input-group">
-          <label for="usuario">Usuário:</label>
-          <input type="text" v-model="usuario" />
+          <label for="email">Email:</label>
+          <input type="text" v-model="username" required/>
         </div>
         <div class="input-group">
-          <label for="senha">Senha:</label>
-          <input type="password" v-model="senha" />
+          <label for="password">Senha:</label>
+          <input type="password" v-model="password" required/>
         </div>
         <div class="login-button">
           <button type="submit">Entrar</button>
         </div>
       </form>
+      <p v-if="error">{{ error }}</p>
       <p>Ainda não tem uma conta? <router-link to="/Cadastro">Cadastre-se</router-link></p>
     </div>
 </template>
   
-<script>
-  export default {
-  data() {
-    return {
-      usuario: '',
-      senha: '',
-    };
-  },
-  methods: {
-    async login() {
-      const response = await fetch('http://localhost:5000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          usuario: this.usuario,
-          senha: this.senha,
-        }),
-      });
+<script setup lang="ts">
 
-      if (response.ok) {
-        // Redireciona para a página inicial
-        localStorage.setItem('isAuthenticated', true);
-        this.$router.push('/aplicativo');
-      } else {
-        alert('Usuário ou senha incorretos!');
-      }
-    },
-  },
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+const username = ref<string>('');
+const password = ref<string>('');
+const error = ref<string | null>(null);
+
+const login = async () => {
+  try {
+    const response = await fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username: username.value, password: password.value }),
+    });
+
+    if (!response.ok) throw new Error('Email ou senha incorretos');
+
+    const data = await response.json();
+    localStorage.setItem('token', data.token); // Salvar o token no armazenamento local
+    router.push({ name: 'aplicativo' });
+  } catch (err) {
+    error.value = err instanceof Error ? err.message : 'Erro desconhecido';
+  }
 };
+
 </script>
 
 <style scoped>
