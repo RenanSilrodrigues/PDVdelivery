@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { toast } from 'vue3-toastify';
 
 import BannerHome from '../components/BannerHome.vue';
 
@@ -27,14 +28,21 @@ const cadastrar = async () => {
     });
 
     if (response.ok) {
-      alert('Cadastro realizado com sucesso! Faça login.');
-      router.push('/login');
+      toast.success('Cadastro realizado com sucesso! Faça login.', {
+        "theme": "dark",
+        "type": "success",
+        "position": "top-center",
+        "dangerouslyHTMLString": true
+      });
+      setTimeout(() => {
+        router.push('/login');
+      }, 3000);
     } else {
-      alert('Erro ao cadastrar usuário.');
+      toast.error('Erro ao cadastrar usuário.');
     }
   } catch (error) {
     console.error('Erro na requisição:', error);
-    alert('Erro ao cadastrar usuário.');
+    toast.error('Erro ao cadastrar usuário.');
   }
 };
 </script>

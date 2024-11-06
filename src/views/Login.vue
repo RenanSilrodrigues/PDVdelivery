@@ -2,6 +2,7 @@
 
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { toast } from 'vue3-toastify';
 import BannerHome from '@/components/BannerHome.vue';
 
 const router = useRouter();
@@ -19,9 +20,19 @@ const login = async () => {
 
     if (!response.ok) throw new Error('Usuario ou senha incorretos');
 
+    toast.success('Login realizado com sucesso! Carregando o sistema', {
+        "theme": "dark",
+        "type": "success",
+        "position": "top-center",
+        "dangerouslyHTMLString": true
+      });
+
     const data = await response.json();
-    localStorage.setItem('token', data.token); // Salvar o token no armazenamento local
-    router.push({ name: 'aplicativo' });
+    localStorage.setItem('token', data.token);
+
+    setTimeout(() => {
+      router.push({ name: 'aplicativo' });
+    }, 3000);
   } catch (err) {
     error.value = err instanceof Error ? err.message : 'Erro desconhecido';
   }

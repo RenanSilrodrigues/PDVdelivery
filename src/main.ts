@@ -1,11 +1,18 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify';
 
-const app = createApp(App)
+import 'vue3-toastify/dist/index.css';
 
-app.use(router)
+const app = createApp(App);
 
-app.mount('#app')
+app.use(router);
+
+app.use(Vue3Toastify, {
+    autoClose: 8000,
+} as ToastContainerOptions);
+
+app.mount('#app');
