@@ -6,12 +6,17 @@ import CadastroCliente from './CadastroCliente.vue';
 import CadastroProduto from './CadastroProduto.vue';
 import PedidosRealizados from './PedidosRealizados.vue';
 import CadastroCardapio from './CadastroCardapio.vue';
+import CadastroPedido from './CadastroPedido.vue';
+import CadastroPagamento from './CadastroPagamento.vue';
+
 
 const componentMap: { [key: string]: any } = {
     cadastrarcliente: CadastroCliente,
     cadastrarproduto: CadastroProduto,
     pedidos: PedidosRealizados,
-    cardapio: CadastroCardapio
+    cardapio: CadastroCardapio,
+    cadastrarpedido: CadastroPedido,
+    cadastrarpagamento: CadastroPagamento
 };
 
 const props = defineProps<{ currentComponent: string | null }>();

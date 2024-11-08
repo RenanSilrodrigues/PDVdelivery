@@ -18,8 +18,8 @@ const logout = () => {
         </div>
         <nav class="botoesnav">
             <ul class="listamenu">
-                <li><a href="">Menu</a></li>
-                <li><a href="">Sobre</a></li>
+                <li>Menu</li>
+                <li>Sobre</li>
                 <li @click="logout">Sair</li>
             </ul>
             <label class="toggle">Abrir Restaurante:
@@ -60,6 +60,7 @@ const logout = () => {
     color: #ffffff;
     gap: 30px;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 

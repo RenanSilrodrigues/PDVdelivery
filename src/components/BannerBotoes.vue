@@ -18,13 +18,13 @@ function changeComponent(component: string) {
             <button class="botao" @click="changeComponent('pedidos')">PEDIDOS</button>
         </div>
         <div class="botoes">
-            <button class="botao" @click="changeComponent('novopedido')">NOVO PEDIDO</button>
+            <button class="botao" @click="changeComponent('cadastrarpedido')">NOVO PEDIDO</button>
             <button class='botao' @click="changeComponent('sangria')">SANGRIA</button>
             <button class="botao" @click="changeComponent('cadastrarproduto')">CADASTRAR PRODUTO</button>
             <button class="botao" @click="changeComponent('cadastrarcliente')">CADASTRAR CLIENTE</button>
-            <button class="botao" @click="changeComponent('pagamento')">PAGAMENTO</button>
+            <button class="botao" @click="changeComponent('cadastrarpagamento')">PAGAMENTOS</button>
             <button class="botao" @click="changeComponent('cardapio')">CARDAPIO</button>
-            <button class="botao" @click="changeComponent('relatorios')">RELATÓRIOS</button>
+            <button class="botao" @click="changeComponent('cadastrarrelatorios')">RELATÓRIOS</button>
             <button class="botao" @click="changeComponent('gerenciar')">GERENCIAR</button>
         </div>
     </div>
