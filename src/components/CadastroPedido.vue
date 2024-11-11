@@ -9,19 +9,46 @@
             <h1>NOVO PEDIDO</h1>
         </div>
         <div class="barraform">
-            <div class="tabs">
-                <button id="tabbutton"
-                    v-for="(tipo, index) in tipos"
-                    :key="index"
-                    @click="activeTab = tipo"
-                    :class="{ active: activeTab === tipo }"
-                    >
-                    {{ tipo }}
-                </button>
-            </div>
+            <form action="">
+                <div class="cadastro-cliente">
+                    <label for="telefone">Telefone:</label><br>
+                    <input type="tel" id="telefone" name="telefone" maxlength="15" required>
+                    <p></p>
+                </div>
+            </form>
+            <form action="">
+                <div class="cadastro-pagamento">
+                    <label for="pagamento">Pagamento:</label>
+                        <select id="pagamento" required>
+                            <option value="selecione">Selecione</option>
+                            <option value="Dinheiro">Dinheiro</option>
+                            <option value="Debito">Debito</option>
+                            <option value="Credito">Credito</option>
+                            <option value="Refeição">Refeição</option>
+                            <option value="Pix">Pix</option>
+                            <option value="Cupom">Cupom</option>
+                        </select>
+                </div>
+            </form>
+            <form action="">
+                <div class="cadastro-produto">
+                    <label for="item">Item:</label><br>
+                    <input type="text" name="item" required>
+                    <button>Adicionar mais</button>
+                </div>
+            </form>
+        </div>
+        <div class="barra-botoes">
+            <button>Descartar</button>
+            <button>Confirmar</button>
         </div>
         <div class="barratabela">
-
+            <p>Novo Pedido</p>
+            <p>Cliente: Fulano</p>
+            <p>O endereço do cliente aparecerá aqui</p>
+            <p>Itens do pedido</p>
+            <p>Pagamento em </p>
+            <p>Valor Total:</p>
         </div>
     </div>
 
@@ -53,12 +80,15 @@
 }
 
 .barraform{
+    display: grid;
+    grid-template-columns: auto auto;
     border-radius: 5px;
     background-color: #DADADA;
     padding: 1rem;
     margin: 8px;
     font-family: "Montserrat", sans-serif;
     box-shadow: 2px 2px 5px #a5a5a5;
+    height: 45vh;
 }
 
 .barratabela{
