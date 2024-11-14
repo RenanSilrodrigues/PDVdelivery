@@ -7,6 +7,9 @@ import { errorMessages } from 'vue/compiler-sfc';
 const searchPhone = ref(''); // estado do termo de busca
 const results = ref([]); // estado para armazenar os resultados
 const errorMessage = ref('');
+const searchTerm = ref('');
+const product = ref<{ descricao: string; valor: number } | null>(null);
+const selectedItems = ref<{ descricao: string; valor: number }[]>([]);
 let timeoutId: NodeJS.Timeout | null = null; // para controle do debounce
 
 // Função para buscar dados
@@ -56,6 +59,39 @@ const copyToClipboard = (text: string) => {
     });
 };
 
+// Função para buscar o produto ao digitar
+const fetchProduct = async () => {
+  if (searchTerm.value.trim()) {
+    try {
+      const response = await axios.get('http://localhost:5000/api/itens', {
+        params: { descricao: searchTerm.value }
+      });
+      product.value = response.data[0] || null; // Armazena o primeiro produto encontrado ou null se vazio
+    } catch (error) {
+      console.error('Erro ao buscar produto:', error);
+    }
+  } else {
+    product.value = null; // Limpa o produto caso o campo de busca esteja vazio
+  }
+};
+
+// Adiciona o produto à lista de itens selecionados
+const addItemToList = () => {
+  if (product.value) {
+    // Converte valor para número ao adicionar na lista, garantindo que será um número
+    selectedItems.value.push({ descricao: product.value.descricao, valor: Number(product.value.valor) });
+    product.value = null;
+    searchTerm.value = ''; // Limpa o campo de busca
+  }
+};
+
+// Remove um item da lista de itens selecionados
+const removeItem = (index: number) => {
+  if (selectedItems.value && selectedItems.value.length > index) {
+    selectedItems.value.splice(index, 1);
+  }
+};
+
 </script>
 
 <template>
@@ -93,14 +129,24 @@ const copyToClipboard = (text: string) => {
                 </div>
                 <div class="cadastro-produto">
                     <label for="item">Item:</label><br>
-                    <input type="text" name="item" required>
-                    <button>Adicionar mais</button>
+                    <input type="text" v-model="searchTerm" @input="fetchProduct" name="item">
+                    <div v-if="product">
+                      <p>
+                        Produto: {{ product.descricao }} - 
+                        Valor: R$ {{ product.valor ? Number(product.valor).toFixed(2) : 'N/A' }}
+                      </p>
+                      <button type="button" @click="addItemToList">Adicionar Produto</button>
+                    </div>
+                    <ul>
+                      <li v-for="(item, index) in selectedItems" :key="index">
+                        {{ item.descricao }} - R$ {{ Number(item.valor).toFixed(2) }}
+                        <button type="button" @click="removeItem(index)">Remover</button>
+                      </li>
+                    </ul>
                 </div>
+                <button type="submit">Confirmar</button>
+                <button>Descartar</button>
             </form>
-        </div>
-        <div class="barra-botoes">
-            <button>Descartar</button>
-            <button>Confirmar</button>
         </div>
         <div class="barratabela">
             <table>
@@ -116,11 +162,15 @@ const copyToClipboard = (text: string) => {
                 </tbody>
                 <thead>
                     <tr><th>ITENS DO PEDIDO</th></tr>
+                    <ul>
+                      <li v-for="(item, index) in selectedItems" :key="index">
+                        {{ item.descricao }} - R$ {{ Number(item.valor).toFixed(2) }}
+                      </li>
+                    </ul>
                 </thead>
             </table>
         </div>
     </div>
-
 </template>
 
 <style scoped>
