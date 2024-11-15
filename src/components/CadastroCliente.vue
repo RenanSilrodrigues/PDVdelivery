@@ -4,24 +4,8 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
 onMounted(() => {
-    const telefoneInput = document.getElementById('telefone') as HTMLInputElement;
     const cepInput = document.getElementById('cep') as HTMLInputElement;
     const textInputs = document.querySelectorAll('input[type="text"]') as NodeListOf<HTMLInputElement>;
-
-    telefoneInput.addEventListener('input', (event) => {
-        let input = event.target as HTMLInputElement;
-        let value = input.value.replace(/\D/g, '');
-
-        if (value.length > 2) {
-            value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-        }
-
-        if (value.length > 10) {
-            value = `${value.slice(0, 10)}-${value.slice(10)}`;
-        }
-
-        input.value = value;
-    });
 
     cepInput.addEventListener('input', (event) => {
         let input = event.target as HTMLInputElement;
