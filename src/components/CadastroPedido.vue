@@ -2,6 +2,7 @@
 
 import { ref, computed } from 'vue';
 import axios from 'axios';
+import { toast } from 'vue3-toastify';
 
 const searchPhone = ref('');
 const results = ref([]);
@@ -102,11 +103,22 @@ const submitForm = async () => {
 
     const response = await axios.post('http://localhost:5000/api/pedidos', formData);
 
-    alert('Pedido enviado com sucesso!');
+    toast.success('Pedido realizado com sucesso!', {
+        "theme": "dark",
+        "type": "success",
+        "position": "top-center",
+        "dangerouslyHTMLString": true
+      });
+
     console.log('Resposta do servidor:', response.data);
 
+    setTimeout(() => {
     searchPhone.value = '';
     selectedItems.value = [];
+    selectedOption.value = '';
+    results.value = [];
+    }, 5000);
+
   } catch (error) {
     console.error('Erro ao enviar o formulário:', error);
     alert('Erro ao enviar o formulário. Tente novamente.');
@@ -123,7 +135,7 @@ const submitForm = async () => {
       <h1>NOVO PEDIDO</h1>
     </div>
       <div class="barraform">
-        <form class="form-pedido" @submit.prevent="submitForm">
+        <form class="form-pedido" @submit.prevent="submitForm" autocomplete="off">
           <div class="cadastro-cliente">
             <label for="telefone">Telefone:</label><br />
             <input
@@ -135,13 +147,8 @@ const submitForm = async () => {
               @input="handleInput"
             />
             <!--<p v-if="copyMessage">{{ copyMessage }}</p>-->
-            <p v-if="errorMessage">{{ errorMessage }}</p>
-            <ul v-if="results.length" class="dados-cliente">
-              <li v-for="item in results" :key="item.id">
-                <p>{{ item.nome }}</p>
-                <p>{{ item.endereco }}, {{ item.numero }} - {{ item.complemento }}</p>
-              </li>
-            </ul>
+            <p class="errorMessage" v-if="errorMessage">{{ errorMessage }}</p>
+          
           </div>
           <div class="cadastro-produto">
             <label for="item">Item:</label><br />
@@ -152,16 +159,8 @@ const submitForm = async () => {
               @input="fetchProduct"
             />
             <div v-if="product" class="dados-produto">
-              <p>Produto: {{ product.descricao }}</p>
-              <p>Valor: {{ formatValue(product.valor) }}</p>
-              <button type="button" @click="addItemToList">Adicionar</button>
+              <p>{{ product.descricao }} - Valor: {{ formatValue(product.valor) }} <button id="button" type="button" @click="addItemToList">Adicionar</button></p>
             </div>
-            <ul class="dados-produto-adicionado">
-              <li v-for="(item, index) in selectedItems" :key="index">
-                {{ item.descricao }} - {{ formatValue(item.valor) }}
-                <button type="button" @click="removeItem(index)">Remover</button>
-              </li>
-            </ul>
           </div>
           <div class="cadastro-pagamento">
             <label for="pagamento">Pagamento:</label>
@@ -174,41 +173,42 @@ const submitForm = async () => {
               <option value="Refeição">Refeição</option>
             </select>
           </div>
-          <div class="pedido-total">
-            <h4>Total: {{ formatValue(totalValor) }}</h4>
-          </div>
           <div class="pedido-button">
-            <button type="submit">Confirmar</button>
-            <button type="button" @click="discardForm">Descartar</button>
+            <button id="button" type="submit">Confirmar</button>
+            <button id="button" type="button" @click="discardForm">Descartar</button>
           </div>
         </form>
       </div>
       <div class="barratabela">
-              <table class="recibo">
-                  <thead>
-                      <tr><th>NOVO PEDIDO</th></tr>
-                      <tr><th>ENTREGA</th></tr>
-                  </thead>
-                  <tbody>
-                      <tr v-for="item in results" :key="item.id">
-                          <tr>CLIENTE:{{ item.nome }}</tr>
-                          <tr>ENDEREÇO DE ENTREGA:{{ item.endereco }}, {{ item.numero }} [{{ item.complemento }}]</tr>
-                      </tr>
-                  </tbody>
-                  <thead>
-                    <tr><th>ITENS DO PEDIDO</th></tr>
-                  </thead>
-                      <tr>
-                        <th v-for="(item, index) in selectedItems" :key="index">
-                          {{ item.descricao }} - R$ {{ Number(item.valor).toFixed(2) }}
-                        </th>
-                        <th>
-                          Total: {{ formatValue(totalValor) }}
-                        </th>
-                        <p v-if="selectedOption">Pagamento: {{ selectedOption }}</p>
-                      </tr>
-              </table>
-          </div>
+            <header class="informacoest">
+              <h1>PEDIDO ENTREGA</h1>
+            </header>
+
+            <div class="informacoes">
+              <div v-for="item in results" :key="item.id">
+                <p>Cliente: {{ item.nome }}</p>
+                <p>Entrega: {{ item.endereco }}, {{ item.numero }} [{{ item.complemento }}]</p>
+              </div>
+            </div>
+
+            <header class="carrinhot">
+              <h1>CARRINHO</h1>
+            </header>
+
+            <div class="carrinho">
+              <div v-for="(item, index) in selectedItems" :key="index">
+                  <li>{{ item.descricao }} - {{ formatValue(item.valor) }} <button type="button" @click="removeItem(index)"><img src="../../public/images/iconLixeira.png" id="imgiconsacoes"></button></li>
+              </div>
+            </div>
+
+            <div class="pedido-total">
+              <h4>Total: {{ formatValue(totalValor) }}</h4>
+            </div>
+
+            <div v-if="selectedOption" class="pagamento">
+              <p>Forma de Pagamento: {{ selectedOption }}</p>
+            </div>
+      </div>
   </div>
 </template>
 
@@ -243,92 +243,115 @@ const submitForm = async () => {
 }
 
 .barraform{
-    border-radius: 5px;
-    background-color: #DADADA;
-    padding: 1rem;
-    margin: 8px;
-    font-family: "Montserrat", sans-serif;
-    box-shadow: 2px 2px 5px #a5a5a5;
-    height: 68vh;
+  border-radius: 5px;
+  background-color: #DADADA;
+  padding: 1rem;
+  margin: 8px;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 2px 2px 5px #a5a5a5;
+  height: 68vh;
 }
 
 .form-pedido{
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-pedido, select, [type=text], [type=tel], [type=number]  {
-    width: 100%;
-    padding: 8px 20px;
-    border-radius: 4px;
-    box-sizing: border-box; 
+  width: 100%;
+  padding: 8px 20px;
+  border-radius: 4px;
+  box-sizing: border-box; 
 }
 
 .form-pedido [type=text], [type=tel]:focus{
-    outline-color: red;
+  outline-color: red;
 }
 
 .cadastro-produto{
-  margin-top: 6rem;
+  margin-top: 3rem;
 }
 
 .cadastro-pagamento{
-  margin-top: 10rem;
+  margin-top: 5rem;
 }
 
 .barratabela{
-    background-color: #C1BCFF;
-    height: 68vh;
-    margin: 8px;
-    border-radius: 4px;
-    overflow: auto;
-    box-shadow: 2px 2px 5px #a5a5a5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #C1BCFF;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  height: 68vh;
+  margin: 8px;
+  border-radius: 4px;
+  overflow: auto;
+  box-shadow: 2px 2px 5px #a5a5a5;
+}
+
+.informacoes{
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+  margin-top: 3rem;
+  position: absolute;
+}
+
+.informacoest{
+  margin-top: 1rem;
+}
+
+.carrinho{
+  margin-top: 10.3rem;
+  position: absolute;
+}
+
+.carrinhot{
+  margin-top: 6rem;
+} 
+
+#imgiconsacoes{
+  width: 16px;
+  height: 16px;
 }
 
 .pedido-total{
-  display: flex;
-  justify-content: center;
-  padding: 3rem;
-  font-size: 2rem;
+  margin-top: 23rem;
+  font-size: 3rem;
 }
 
-.dados-cliente{
-  padding: 1rem;
-  position: absolute;
-  background-color: white;
+.pagamento{
   margin-top: 1rem;
-}
-
-.dados-produto-adicionado{
-  padding: 1rem;
-  position: absolute;
-  margin-top: 1rem;
-  background-color: white;
-}
-
-.dados-produto{
-  display: flex;
-  align-items: baseline;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: white;
-  margin-top: 1rem;
-}
-
-button {
-    background-color: #837AFE;
-    color: black;
-    font-family: "Montserrat", sans-serif;
-    width: 150px;
-    border-radius: 10px;
-    padding: 8px 0;
-    cursor: pointer;
 }
 
 .pedido-button{
   display: flex;
   justify-content: center;
   gap: 1rem;
+  margin-top: 7rem;
+}
+
+#button {
+  background-color: #837AFE;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  width: 150px;
+  border-radius: 10px;
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.errorMessage{
+  margin-top: 1rem;
+  position: absolute;
+  font-size: 1.1rem
+}
+
+.dados-produto{
+  margin-top: 1rem;
+  position: absolute;
+  font-size: 1.1rem;
 }
 
 </style>

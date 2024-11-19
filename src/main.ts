@@ -12,7 +12,7 @@ const app = createApp(App);
 app.use(router);
 
 app.use(Vue3Toastify, {
-    autoClose: 8000,
+    autoClose: 4000,
 } as ToastContainerOptions);
 
 app.mount('#app');
