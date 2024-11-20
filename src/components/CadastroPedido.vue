@@ -103,7 +103,7 @@ const submitForm = async () => {
 
     const response = await axios.post('http://localhost:5000/api/pedidos', formData);
 
-    toast.success('Pedido realizado com sucesso!', {
+    toast.success('Pedido realizado com sucesso! Entrega: 45 minutos', {
         "theme": "dark",
         "type": "success",
         "position": "top-center",
