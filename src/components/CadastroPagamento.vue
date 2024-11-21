@@ -31,18 +31,22 @@ try {
             <table id="tabela-pedidos">
                 <thead>
                     <tr>
-                        <th><strong>Cliente</strong></th>
-                        <th><strong>Carrinho</strong></th>
-                        <th><strong>Pagamento</strong></th>
-                        <th><strong>Valor Pago</strong></th>
+                        <th>Pedido</th>
+                        <th>Data</th>
+                        <th>Cliente</th>
+                        <th>Carrinho</th>
+                        <th>Pagamento</th>
+                        <th>Valor Pago</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr v-for="pedidos in pedidos" :key="pedidos.id">
+                        <td>{{ pedidos.id }}</td>
+                        <td>{{ new Date(pedidos.data).toLocaleDateString('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit' }) }}</td>
                         <td>{{ pedidos.telefone }}</td>
                         <td>{{ pedidos.produtos}}</td>
                         <td>{{ pedidos.pagamento}}</td>
-                        <td>{{ pedidos.total }}</td>
+                        <td>{{ new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(pedidos.total) }}</td>
                     </tr>
                 </tbody>
             </table>

@@ -2,22 +2,27 @@
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
 
-// Estado para armazenar o último pedido
-const ultimoPedido = ref(null);
+interface Pedido {
+  id: number;
+  telefone: string;
+  produtos: string;
+  total: number;
+  pagamento: string;
+}
+
+const ultimoPedido = ref<Pedido | null>(null);
 const errorMessage = ref('');
 
-// Função para buscar o último pedido
 const fetchUltimoPedido = async () => {
   try {
     const response = await axios.get('http://localhost:5000/api/ultimo-pedido');
-    ultimoPedido.value = response.data; // Armazena o último pedido
+    ultimoPedido.value = response.data;
   } catch (error) {
     console.error('Erro ao buscar o último pedido:', error);
     errorMessage.value = 'Erro ao carregar o último pedido.';
   }
 };
 
-// Busca o último pedido ao montar o componente
 onMounted(() => {
   fetchUltimoPedido();
 });

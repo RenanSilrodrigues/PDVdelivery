@@ -5,14 +5,23 @@ import axios from 'axios';
 import { toast } from 'vue3-toastify';
 
 const searchPhone = ref('');
-const results = ref([]);
+
+interface Cliente {
+  id: number;
+  nome: string;
+  endereco: string;
+  numero: string;
+  complemento: string;
+}
+
+const results = ref<Cliente[]>([]);
 const errorMessage = ref('');
 const copyMessage = ref<string | null>(null);
 const searchTerm = ref('');
 const product = ref<{ descricao: string; valor: number } | null>(null);
 const selectedItems = ref<{ descricao: string; valor: number }[]>([]);
 const selectedOption = ref('');
-let timeoutId: NodeJS.Timeout | null = null;
+let timeoutId: ReturnType<typeof setTimeout> | null = null;
 
 const handleInput = () => {
   if (timeoutId) clearTimeout(timeoutId);
@@ -86,11 +95,20 @@ const totalValor = computed(() =>
 const formatValue = (value: number): string =>
   value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
+const discardForm = () => {
+  searchPhone.value = '';
+  selectedItems.value = [];
+  selectedOption.value = '';
+  results.value = [];
+  searchTerm.value = '';
+  product.value = null;
+};
+
 const submitForm = async () => {
   try {
     const formData = {
       telefone: searchPhone.value,
-      pagamento: document.getElementById('pagamento')?.value,
+      pagamento: (document.getElementById('pagamento') as HTMLSelectElement)?.value,
       total: totalValor.value,
       produtos: selectedItems.value.map(item => item.descricao).join(", "),
       data: new Date().toISOString(),
@@ -105,7 +123,6 @@ const submitForm = async () => {
 
     toast.success('Pedido realizado com sucesso! Entrega: 45 minutos', {
         "theme": "dark",
-        "type": "success",
         "position": "top-center",
         "dangerouslyHTMLString": true
       });
